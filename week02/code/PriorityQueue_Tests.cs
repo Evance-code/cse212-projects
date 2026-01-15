@@ -1,29 +1,71 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
-// TODO Problem 2 - Write and run test cases and fix the code to match requirements.
-
-[TestClass]
-public class PriorityQueueTests
+namespace Week02Tests
 {
-    [TestMethod]
-    // Scenario: 
-    // Expected Result: 
-    // Defect(s) Found: 
-    public void TestPriorityQueue_1()
+    [TestClass]
+    public class PriorityQueueTests
     {
-        var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
-    }
+        [TestMethod]
+        public void TestPriorityQueue_1()
+        {
+            var priorityQueue = new PriorityQueue();
 
-    [TestMethod]
-    // Scenario: 
-    // Expected Result: 
-    // Defect(s) Found: 
-    public void TestPriorityQueue_2()
-    {
-        var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
-    }
+            priorityQueue.Enqueue("Low", 1);
+            priorityQueue.Enqueue("Medium", 5);
+            priorityQueue.Enqueue("High", 10);
 
-    // Add more test cases as needed below.
+            var result = priorityQueue.Dequeue();
+
+            Assert.AreEqual("High", result);
+        }
+
+        [TestMethod]
+        public void TestPriorityQueue_2()
+        {
+            var priorityQueue = new PriorityQueue();
+
+            priorityQueue.Enqueue("First", 5);
+            priorityQueue.Enqueue("Second", 5);
+            priorityQueue.Enqueue("Third", 5);
+
+            var result = priorityQueue.Dequeue();
+
+            // FIFO for equal priority (first item added with highest priority)
+            Assert.AreEqual("First", result);
+        }
+
+        [TestMethod]
+        public void TestPriorityQueue_EmptyQueue()
+        {
+            var priorityQueue = new PriorityQueue();
+
+            var exception = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                priorityQueue.Dequeue();
+            });
+
+            Assert.AreEqual("The queue is empty.", exception.Message);
+        }
+
+        [TestMethod]
+        public void TestPriorityQueue_MultipleDequeues()
+        {
+            var priorityQueue = new PriorityQueue();
+
+            priorityQueue.Enqueue("Low", 1);
+            priorityQueue.Enqueue("Medium", 5);
+            priorityQueue.Enqueue("High", 10);
+
+            Assert.AreEqual("High", priorityQueue.Dequeue());
+            Assert.AreEqual("Medium", priorityQueue.Dequeue());
+            Assert.AreEqual("Low", priorityQueue.Dequeue());
+
+            var exception = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                priorityQueue.Dequeue();
+            });
+            Assert.AreEqual("The queue is empty.", exception.Message);
+        }
+    }
 }
