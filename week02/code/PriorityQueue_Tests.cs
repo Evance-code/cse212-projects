@@ -7,6 +7,9 @@ namespace Week02Tests
     public class PriorityQueueTests
     {
         [TestMethod]
+        // Scenario: Add elements with different priorities and dequeue once
+        // Expected Result: The element with the highest priority ("High") is dequeued first
+        // Test Result: Passed
         public void TestPriorityQueue_1()
         {
             var priorityQueue = new PriorityQueue();
@@ -21,6 +24,9 @@ namespace Week02Tests
         }
 
         [TestMethod]
+        // Scenario: Add multiple elements with equal priority and dequeue once
+        // Expected Result: FIFO behavior for elements with equal priority; "First" should be dequeued first
+        // Test Result: Passed
         public void TestPriorityQueue_2()
         {
             var priorityQueue = new PriorityQueue();
@@ -31,11 +37,13 @@ namespace Week02Tests
 
             var result = priorityQueue.Dequeue();
 
-            // FIFO for equal priority (first item added with highest priority)
             Assert.AreEqual("First", result);
         }
 
         [TestMethod]
+        // Scenario: Dequeue from an empty queue
+        // Expected Result: InvalidOperationException with message "The queue is empty."
+        // Test Result: Passed
         public void TestPriorityQueue_EmptyQueue()
         {
             var priorityQueue = new PriorityQueue();
@@ -49,6 +57,9 @@ namespace Week02Tests
         }
 
         [TestMethod]
+        // Scenario: Add multiple elements and dequeue all, checking order
+        // Expected Result: Dequeue order should be "High", "Medium", "Low" and exception thrown after queue is empty
+        // Test Result: Passed
         public void TestPriorityQueue_MultipleDequeues()
         {
             var priorityQueue = new PriorityQueue();
