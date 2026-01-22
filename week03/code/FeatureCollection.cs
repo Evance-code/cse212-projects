@@ -1,5 +1,13 @@
 public class FeatureCollection
 {
-    // TODO Problem 5 - ADD YOUR CODE HERE
-    // Create additional classes as necessary
+    public Feature[] features { get; set; }  // notice lowercase 'features'
+}
+public class Feature
+{
+    public Properties properties { get; set; }  // lowercase 'properties'
+}
+public class Properties
+{
+    public string place { get; set; }         // lowercase 'place'
+    public double mag { get; set; }           // lowercase 'mag'
 }

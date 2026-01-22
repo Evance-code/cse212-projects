@@ -24,7 +24,25 @@
 
     private static int CountDuplicates(int[] data)
     {
-        // Add code here.
-        return 0;
+        HashSet<int> seen = new HashSet<int>();
+        int duplicateCount = 0;
+
+        foreach (int num in data)
+        {
+            if (seen.Contains(num))
+            {
+                // Already seen → it's a duplicate
+                duplicateCount++;
+            }
+            else
+            {
+                // First time seeing this number → add to set
+                seen.Add(num);
+            }
+        }
+
+        return duplicateCount;
+
+
     }
 }
